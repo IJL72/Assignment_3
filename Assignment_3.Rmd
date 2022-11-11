@@ -92,7 +92,6 @@ results <- bind_rows(results_8, results_40)
 Beregner SE og gjennomsnitlig  SE for samp1 og samp2
 ```{r, echo=FALSE}
 
-
  results %>% 
   group_by(n) %>% 
   summarise(sd_estimate = sd(estimate, na.rm = T),
@@ -105,6 +104,11 @@ Beregner SE og gjennomsnitlig  SE for samp1 og samp2
 
 
 ```
+
+Som vist er SD og gjennomsnitt av SE for henholdsvis sample8 og sample40 svært like. 
+
+Standard Error er en funksjon av standardavviket (SD) og utvalgstørrelsen n.  SE = √sd/n
+
 
 #Oppgave 5.
 Lager et histogram av p-verdier fra hvert av de to studie-utvalgene.

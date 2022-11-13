@@ -1,20 +1,15 @@
-
 ---
 title: "Arbeidskrav 3"
 author: "IJ"
 date: "2022-11-10"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
+Ut fra et mindre studie, simuleres en populasjon på en million, hvor gjennomsnittet (mean) er på 1.5 og standardavviket (SD) på 3. Ut av denne populasjonen trekker vi to utvalg. Et av studiene har et utvalg (n) på 8 (samp1) og det andre på 40 (samp2). Ut fra disse, lager vi en lineær model og lagrer objektene som m1 og m2:
 
-I denne oppgaven simulerer vi en populasjon ut fra gitte observasjoner. Ut fra denne populasjonen  gjør vi tilfeldige utvalg (samples) og  gjør statistiske beregninger og analyse.  
-
-Verdiene kan regenes  som  den mulige forskjellen mellom to intervensjoner  (Behandling - Kontroll) i et cross-over studie hvor deltagerne har gjennomført begge intervensjoner. 
-
-Vi simulerer en populasjon  på en million, hvor gjennomsnittet (mean)  er på 1.5 og  standardavviket (SD) på 3. Ut av denne trekker vi  to utvalg. Et av studiene har et utvalg (n) på 8 (samp1) og det andre på 40 (samp2). Ut fra disse, lager vi en lineær model og lagrer objektene som m1 og m2:
-
-
-Utvalg 1  - samp1
+Utvalg 1 - samp1
 
 ```{r, echo=FALSE, message=FALSE}
 
@@ -40,6 +35,7 @@ summary(m1)
 Utvalg 2 - samp2
 
 ```{r, echo=FALSE, message=FALSE}
+
 set.seed(1)
 population <- rnorm(1000000, mean = 1.5, sd = 3)
 
@@ -55,32 +51,23 @@ m2 <- lm(y ~ 1, data = samp2)
 summary(m2)
 ```
 
+# Oppgave 1.
 
+Estimatet er et beregnet gjennomsnitt av alle verdier i utvalget. I våre beregniner er estimatet 1.840 for samp1 og 1.564 for samp2. Hvor godt et slikt estaimat er, avhenger av hvor hvor mye fordelingen X er spredt rundt µ (populasjonens mean). Våre undersøkelser viser at utvalg 2 har et lavere estimat, og er derfor mer presis.
 
+Standard Error (SE) er definert som standard deviasjonen (SD), delt på kvadratroten av antall observasjoner (n). SE er en måte å angi feilmarginen av en måling eller et estimat. I vår oppgave er SE 1.251 for samp1 og 0.477 for samp2. Vi ser da at et større utvalg som i samp2 gir en mindre SE. Dette indikerer en mindre feilmargin på estimatet i samp2.
 
+T-verdien en beregnes som en ratio av Estimatet og SD (Est/SD). T-verdien forteller oss om vi kan forkaste nullhypotesen på det testnivå vi operer med. Jo høyere t-verdi, desto mindre sannsynlighet for at forskjellen vi observerer er tilfeldig. I våre beregninger er t-verdien 1.47 for samp1 og 3.27 for samp2. Det er derfor mindre sannsynlighet for at funnene i vårt største utvalg er tilfeldige funn.
 
-# Oppgave 1. 
-"Estimatet" er et beregnet  gjennomsnitt av alle verdier i utvalget. 
-I våre beregniner er  estimatet 1.840 for samp1 og 1.564 for samp2.  Hvor godt et slikt estaimat er, avhenger av hvor  hvor mye fordelingen X˜ er spredt rundt µ (populasjonens mean).  Våre undersøkelser viser at  utvalg 2 har et lavere estimat, og er derfor mer presis. 
-
-Standard Error (SE) er definert som standard deviasjonen (SD), delt på  kvadratroten av antall observasjoner (n). SE er en måte å angi feilmarginen av en måling eller et estimat.  I vår oppgave er  SE 1.251 for samp1 og 0.477 for samp2. Vi ser da  at et større  utvalg som i samp2 gir  en mindre SE. Dette indikerer en mindre feilmargin på estimatet.
-
-T-verdien en beregnes  som en ratio av Estimatet og SD (Est/SD). T-verdien forteller oss om vi kan forkaste nullhypotesen på det testnivå vi operer med. 
-Jo høyere t-verdi, desto mindre sannsynlighet for at  forskjellen vi observerer er tilfeldig.
-I våre beregninger er t-verdien 1.47  for samp1 og 3.27 for samp2.  Det er derfor mindre sannsynlighet for at funnene i vårt minste utvalg er tilfeldige funn. 
-
-P-verdien et statistisk mål, som brukes for å avgjøre hvilken av to motstridende påstander vi skal støtte i en statistisk hypotesetesting. Det forteller oss om sannsynligheten for at testresultatet er det samme, eller mer ekstremt  om nullhypotesen er sann. P-verdien  er et tall mellom 0 og 1. Jo lavere verdi, jo mindre forenlig er våre observasjoner med nullypotesen.  Om p-verdien  er under  det signifikansnivå vi har satt (typisk 5%), vil man si at testen er signifikant.  
-
+P-verdien et statistisk mål, som brukes for å avgjøre hvilken av to motstridende påstander vi skal støtte i en statistisk hypotesetesting. Det forteller oss om sannsynligheten for at testresultatet er det samme, eller mer ekstremt om nullhypotesen er sann. P-verdien er et tall mellom 0 og 1. Jo lavere verdi, jo mindre forenlig er våre observasjoner med nullypotesen. Om p-verdien er under det signifikansnivå vi har satt (typisk 5%), vil man si at testen er signifikant.
 
 # Oppgave 2.
-De to studiene har  ulik utvalgstørrelse.  Når vi  benytter utvalg av en simulert populasjon, er det da viktig at utvalgene ikke blir for små. 
 
+De to studiene har ulik utvalgstørrelse. Når vi benytter utvalg av en simulert populasjon, er det da viktig at utvalgene ikke blir for små. Risikoen for å få tilfeldige feil vil øke i mindre studier.
 
 # Oppgave 3.
-De skyggelagte områdene i øvre og nedre del av  halen på t-fordelingen definerer området hvor veridene er mer ekstreme enn vår t-verdi. 
-Vi kan beskrive hvert skravert område som /2, hvor området i midten under kurven  er 1-.
 
-
+De skyggelagte områdene i øvre og nedre del av halen på t-fordelingen definerer området hvor verdiene er mer ekstreme enn vår t-verdi. Vi kan beskrive hvert skravert område som α /2, hvor området i midten under kurven er 1- α. Det midterste uskraverte arealet korresponderer med nullhypotesen. 
 
 ```{r, echo=FALSE, message=FALSE}
 
@@ -126,9 +113,10 @@ for(i in 1:1000) {
 results <- bind_rows(results_8, results_40)
 ```
 
-
 # Oppgave 4.
-Beregner SE og gjennomsnitlig  SE for samp1 og samp2
+
+Beregner SE og gjennomsnitlig SE for samp1 og samp2
+
 ```{r, echo=FALSE}
 
  results%>% 
@@ -144,19 +132,16 @@ Beregner SE og gjennomsnitlig  SE for samp1 og samp2
 
 ```
 
+Som vist er SD og gjennomsnitt av SE for henholdsvis sample8 og sample40 svært like.
 
+Standard Deviasjonen måler hvor mye de individuelle data varierer fra gjennomsnittet.
 
-Som vist er SD og gjennomsnitt av SE for henholdsvis sample8 og sample40 svært like. 
+Standard Error av gjennomsnittet måler hvor langt fra utvalgets gjennomsnitt den sanne populasjonens gjennomsnitt befinner seg.
 
-Standard Error er en funksjon av standardavviket (SD) og utvalgstørrelsen n.  SE = √sd/n
-Størrelsen på utvalget (n) har derfor en 
-
-Explain why these numbers are very similar. How can you define the Standard Error (SE) in light of these calculations?
-
-
-
+SE er en funksjon av standardavviket (SD) og utvalgstørrelsen n. SE = sd/√n Når utvalgsstørrelsen (n) øker, vil SE falle. Når n øker, vil også utvalgets gjennomsnitt  estimeres med større presisjon.
 
 # Oppgave 5.
+
 Lager et histogram av p-verdier fra hvert av de to studie-utvalgene.
 
 ```{r, echo=FALSE, message=FALSE}
@@ -169,14 +154,11 @@ results %>%
 
 ```
 
-
-
-I samp1 er  p-verdiene spredt fra 0-1, med en lett opphopning ned mot 0.  I  samp2 er det en  overvekt  p-verdier ned mot 0. Dette kan  tolkes som at det er flere tester i samp2 med statistisk signifikans og at den statistiske styrken er høyere.
-
-
+I samp1 er p-verdiene spredt fra 0-1, med en lett opphopning ned mot 0. I samp2 er det en overvekt p-verdier ned mot 0. Dette kan tolkes som at det er flere tester i samp2 med statistisk signifikans og at den statistiske styrken er høyere.
 
 # Oppgave 6.
-Beregner antall studier fra hvert  utvalg som viser en statistisk signifikant effekt.
+
+Beregner antall studier fra hvert utvalg som viser en statistisk signifikant effekt.
 
 ```{r, echo=FALSE}
 
@@ -187,30 +169,23 @@ results %>%
 
 ```
 
-Calculate the number of studies from each sample size that declare a statistical significant effect (specify a threshold for , your significance level).
-
-Som vi ser  er det  stor forskjell mellom de to utvalgene.  Vi har valgt en konfidensintervall på 95%. I utvalg 1  er det kun 22,7 % av  studiene som viser signifikant  forskjell. I utvalg 2 er det 86,5% av studiene som viser signifikant forskjell. 
-
+Som vi ser er det stor forskjell mellom de to utvalgene. Vi har valgt en konfidensintervall på 95%. I utvalg 1 er det kun 22,7 % av studiene som viser signifikant forskjell. I utvalg 2 er det 86,5% av studiene som viser signifikant forskjell.
 
 # Oppgave 7.
-Beregner styrken på en en-utvalgs t-test hvor 
 
+Beregner styrken på en en-utvalgs t-test hvor
 
 ```{r, echo=FALSE}
 
 pwr.t.test(n = 8, sig.level = 0.05, d = 1.5/3, type = "one.sample")
 ```
 
-
 ```{r, echo=FALSE}
 
 pwr.t.test(n = 40, sig.level = 0.05, d = 1.5/3, type = "one.sample")
 ```
 
-
-Den beregnede  styrken er på  henholdsvis 0.232 for  utvalg 1 og 0.869 for utvalg 2. Den statistsike  styrken forteller oss sannsynligheten  for at resultatet av studiene er statistisk signifikant. Ofte  definerer vi at dette skal være minimum 0.8 eller 80%.  I våre beregninger er derfor utvalget med 40  innenfor den ønskede statisske styrke.
-
-
+Den beregnede styrken er på henholdsvis 0.232 for utvalg 1 og 0.869 for utvalg 2. Den statistsike styrken forteller oss sannsynligheten for at resultatet av studiene er statistisk signifikant. Ofte definerer vi at dette skal være minimum 0.8 eller 80%. I våre beregninger er derfor utvalget med 40 innenfor den ønskede statisske styrke.
 
 Simulerer studier uten populasjonseffekt
 
@@ -262,11 +237,9 @@ results_null <- bind_rows(results_8, results_40)
 
 ```
 
-
-
 # Oppgave 8.
 
-Lager nye histogram  for  datasett med fra studier av en populasjon hvor den  gjennomsnittlige effekten er null
+Lager nye histogram for datasett med fra studier av en populasjon hvor den gjennomsnittlige effekten er null
 
 ```{r, echo=FALSE, message=FALSE}
 
@@ -289,10 +262,6 @@ results_null %>%
 
 ```
 
-
-
-Med et konfidensintervall på 5%, vil  5,3 % studier  i utvalg 1 og 4,5 % i utvalg 2  gi falske positive svar om man gjentar studien
-
-
+Med et konfidensintervall på 5%, vil 4 % studier i utvalg 1 og 6 % i utvalg 2 gi falske positive svar om man gjentar studien
 
 
